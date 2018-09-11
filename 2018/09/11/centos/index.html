@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next muse" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="centos," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Liunx常用命令文件与目录操作   命令 解析     cd /home 进入 ‘/home’ 目录   cd.. 返回上级目录   cd../.. 返回上两级目录   cd - 返回上次所在目录   cp file1 file2 将file1复制为file2   cp -a dir1 dir2 复制一个目录   cp -a /tmp/dir1 复制一个目录到当前工作目录（.代表当前目录）">
+<meta name="keywords" content="centos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos">
+<meta property="og:url" content="http://yoursite.com/2018/09/11/centos/index.html">
+<meta property="og:site_name" content="陈昭旭的博客">
+<meta property="og:description" content="Liunx常用命令文件与目录操作   命令 解析     cd /home 进入 ‘/home’ 目录   cd.. 返回上级目录   cd../.. 返回上两级目录   cd - 返回上次所在目录   cp file1 file2 将file1复制为file2   cp -a dir1 dir2 复制一个目录   cp -a /tmp/dir1 复制一个目录到当前工作目录（.代表当前目录）">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-11T10:18:02.406Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="centos">
+<meta name="twitter:description" content="Liunx常用命令文件与目录操作   命令 解析     cd /home 进入 ‘/home’ 目录   cd.. 返回上级目录   cd../.. 返回上两级目录   cd - 返回上次所在目录   cp file1 file2 将file1复制为file2   cp -a dir1 dir2 复制一个目录   cp -a /tmp/dir1 复制一个目录到当前工作目录（.代表当前目录）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/11/centos/"/>
+
+
+
+
+
+  <title>centos | 陈昭旭的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈昭旭的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/11/centos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Meter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://github.com/fluidicon.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈昭旭的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">centos</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T18:14:41+08:00">
+                2018-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/11/centos/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/11/centos/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  614
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Liunx常用命令"><a href="#Liunx常用命令" class="headerlink" title="Liunx常用命令"></a>Liunx常用命令</h2><h3 id="文件与目录操作"><a href="#文件与目录操作" class="headerlink" title="文件与目录操作"></a>文件与目录操作</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cd /home</td>
+<td>进入 ‘/home’ 目录</td>
+</tr>
+<tr>
+<td>cd..</td>
+<td>返回上级目录</td>
+</tr>
+<tr>
+<td>cd../..</td>
+<td>返回上两级目录</td>
+</tr>
+<tr>
+<td>cd -</td>
+<td>返回上次所在目录</td>
+</tr>
+<tr>
+<td>cp file1 file2</td>
+<td>将file1复制为file2</td>
+</tr>
+<tr>
+<td>cp -a dir1 dir2</td>
+<td>复制一个目录</td>
+</tr>
+<tr>
+<td>cp -a /tmp/dir1</td>
+<td>复制一个目录到当前工作目录（.代表当前目录）</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>查看当前目录下所有文件</td>
+</tr>
+<tr>
+<td>ls -a</td>
+<td>显示隐藏文件</td>
+</tr>
+<tr>
+<td>ls -l</td>
+<td>显示详细信息</td>
+</tr>
+<tr>
+<td>ls -lrt</td>
+<td>按时间显示文件（l表示详细列表，r表示反向排序，t表示按时间排序）</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>显示当前路径</td>
+</tr>
+<tr>
+<td>mkdir dir1</td>
+<td>创建 ‘dir1’ 目录</td>
+</tr>
+<tr>
+<td>mkdir dir1 dir2</td>
+<td>创建2个目录</td>
+</tr>
+<tr>
+<td>mkdir -p /tmp/dir1/dir2</td>
+<td>创建一个目录树</td>
+</tr>
+<tr>
+<td>mv dir1 dir2</td>
+<td>移动/重命名一个目录</td>
+</tr>
+<tr>
+<td>rm -f file1</td>
+<td>删除 ‘file1’</td>
+</tr>
+<tr>
+<td>rm -rf dir1</td>
+<td>删除 ‘dir1’ 目录及其子目录内容</td>
+</tr>
+<tr>
+<td>ln -s /etc/centos-release /root/sysinfo</td>
+<td>创建一个软链接</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wc</td>
+<td>统计一个文件里行数，单词数，字节数</td>
+</tr>
+<tr>
+<td>paste file1 file2</td>
+<td>将文件1和文件2合并</td>
+</tr>
+<tr>
+<td>cut -b 4-9 file</td>
+<td>将文件中的第4-9个字节截取出来</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>改变文件权限</td>
+</tr>
+<tr>
+<td>chown</td>
+<td>修改文件控制权</td>
+</tr>
+<tr>
+<td>yum -y xxx</td>
+<td>安装的时候直接回答yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ps</td>
+<td>看到正在运行进程</td>
+</tr>
+<tr>
+<td>ps -ef/ps -aux</td>
+<td>看到所有正在运行的进程</td>
+</tr>
+<tr>
+<td>kill 进程号</td>
+<td>杀死进程(给善后时间)</td>
+</tr>
+<tr>
+<td>kill -9 进程号</td>
+<td>强行杀死进程</td>
+</tr>
+<tr>
+<td>yum remove <name1> <name2></name2></name1></td>
+<td>删除安装程序</td>
+</tr>
+<tr>
+<td>yum list installed</td>
+<td>查看已安装程序</td>
+</tr>
+<tr>
+<td>yum search <name1> <name2></name2></name1></td>
+<td>搜索</td>
+</tr>
+<tr>
+<td>yum check-update</td>
+<td>检查更新</td>
+</tr>
+<tr>
+<td>yum install <name1> <name2></name2></name1></td>
+<td>安装软件</td>
+</tr>
+<tr>
+<td>yum info <name1> <name2></name2></name1></td>
+<td>查看信息</td>
+</tr>
+<tr>
+<td>yum update</td>
+<td>更新</td>
+</tr>
+<tr>
+<td>rpm -ivh <filename>.rpm</filename></td>
+<td>安装</td>
+</tr>
+<tr>
+<td>rpm -e <name></name></td>
+<td>卸载</td>
+</tr>
+<tr>
+<td>rpm -qa</td>
+<td>查看</td>
+</tr>
+<tr>
+<td>xargs rpm -e</td>
+<td>将前面的输出作为后面的输入</td>
+</tr>
+</tbody>
+</table>
+<p>alias shit=’ps -ef | grep redis | awk ‘{print $2}’ | xargs kill’ 将命令别名</p>
+<h3 id="centos安装Python3"><a href="#centos安装Python3" class="headerlink" title="centos安装Python3"></a>centos安装Python3</h3><ul>
+<li><p>wget <a href="https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz" target="_blank" rel="noopener">https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz</a> 下载python包</p>
+</li>
+<li><p>tar -zxvf Python-3.6.5.tgz 解压python包</p>
+</li>
+<li><p>yum install gcc 安装c语言编译器</p>
+</li>
+<li><p>yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel 安装Python可能需要的依赖库</p>
+</li>
+<li><p>./configure –prefix=/usr/local/python36 –enable-optimizations 生成Makefile文件</p>
+</li>
+<li><p>make &amp;&amp; make install 构建和安装</p>
+</li>
+<li><p>ln -s /usr/local/python36/bin/python3.6 /usr/bin/python3</p>
+</li>
+<li>ln -s /usr/local/python36/bin/pip3 /usr/bin/pip3</li>
+<li><p>ln -s /usr/local/python36/bin/2to3-3.6 /usr/bin/2to3<br>做软连接</p>
+</li>
+<li><p>python3 -m pip install -U pip 更新pip包管理工具</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/centos/" rel="tag"># centos</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/11/Ubuntu下安装常用软件/" rel="next" title="Ubuntu下安装常用软件">
+                <i class="fa fa-chevron-left"></i> Ubuntu下安装常用软件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/11/修改flask项目结构/" rel="prev" title="修改flask项目结构">
+                修改flask项目结构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  <div>
+      
+      <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束------</div>
+    
+</div>
+
+      
+   </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/09/11/centos/"
+           data-title="centos" data-url="http://yoursite.com/2018/09/11/centos/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://github.com/fluidicon.png"
+                alt="Meter" />
+            
+              <p class="site-author-name" itemprop="name">Meter</p>
+              <p class="site-description motion-element" itemprop="description">闲暇时间写写东西</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Liunx常用命令"><span class="nav-number">1.</span> <span class="nav-text">Liunx常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件与目录操作"><span class="nav-number">1.1.</span> <span class="nav-text">文件与目录操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看文件内容"><span class="nav-number">1.2.</span> <span class="nav-text">查看文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他命令"><span class="nav-number">1.3.</span> <span class="nav-text">其他命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos安装Python3"><span class="nav-number">1.4.</span> <span class="nav-text">centos安装Python3</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Meter</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">2.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
